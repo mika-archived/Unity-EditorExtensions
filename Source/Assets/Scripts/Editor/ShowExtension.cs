@@ -11,10 +11,14 @@ namespace Assets.Scripts.Editor
     {
         private static GUIStyle _activeStyle;
         private static GUIStyle _normalStyle;
+        private static string _previousGuid;
 
         [InitializeOnLoadMethod]
         private static void OnLoad()
         {
+            // cleanup previous
+            _previousGuid = null;
+
             // ReSharper disable once DelegateSubtraction
             EditorApplication.projectWindowItemOnGUI -= ProjectWindowItemOnGui;
             EditorApplication.projectWindowItemOnGUI += ProjectWindowItemOnGui;
@@ -31,11 +35,16 @@ namespace Assets.Scripts.Editor
             if (string.IsNullOrEmpty(extension))
                 return;
 
+            if (_previousGuid == guid)
+                return;
+
+            _previousGuid = guid;
+
             var filename = Path.GetFileNameWithoutExtension(path);
             var label = EditorStyles.label;
             var vector = label.CalcSize(new GUIContent(filename));
 
-            selectionRect.x += vector.x + 12;
+            selectionRect.x += vector.x + 13;
             selectionRect.y += 2;
 
             if (_activeStyle == null)
