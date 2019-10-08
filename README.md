@@ -1,6 +1,4 @@
-# ProjectViewExtension for Unity
+# Unity Editor Extensions
 
 > NOTE: This is a practice project.
-
-Show file extension in Unity project view.
 
