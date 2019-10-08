@@ -43,6 +43,9 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Editor
 
         private static void ShowExtensionOnOneColumn(Rect rect, string path, string extension, int instanceId)
         {
+            if (_browser.AssetTreeState.IsRenaming(instanceId))
+                return;
+
             var filename = Path.GetFileNameWithoutExtension(path);
             var label = EditorStyles.label;
             var vector = label.CalcSize(new GUIContent(filename));
@@ -55,6 +58,9 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Editor
 
         private static void ShowExtensionOnTwoColumns(Rect rect, string path, string extension, int instanceId)
         {
+            if (_browser.ListAreaState.IsRenaming(instanceId))
+                return;
+
             var isSingleLine = rect.height <= 20;
             if (isSingleLine)
             {

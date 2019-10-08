@@ -13,5 +13,11 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
         }
 
         public ObjectListAreaState(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ObjectListAreaState")) { }
+
+        public bool IsRenaming(int instanceId)
+        {
+            var renameOverlay = new RenameOverlay(AccessField<object>("m_RenameOverlay", BindingFlags.Instance | BindingFlags.Public));
+            return renameOverlay.IsRenaming() && renameOverlay.UserData == instanceId;
+        }
     }
 }

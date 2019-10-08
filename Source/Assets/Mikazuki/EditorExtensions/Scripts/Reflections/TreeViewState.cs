@@ -16,5 +16,11 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
         }
 
         public TreeViewState(UnityEditor.IMGUI.Controls.TreeViewState instance) : base(instance) { }
+
+        public bool IsRenaming(int instanceId)
+        {
+            var renameOverlay = new RenameOverlay(AccessProperty<object>("renameOverlay", BindingFlags.Instance | BindingFlags.NonPublic));
+            return renameOverlay.IsRenaming() && renameOverlay.UserData == instanceId;
+        }
     }
 }
