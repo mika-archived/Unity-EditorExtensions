@@ -4,9 +4,10 @@ using UnityEditor;
 
 namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
 {
-    public class ProjectBrowser : ReflectionTypeBase
+    public class ProjectBrowser : ReflectionTypeBase<object>
     {
         private ProjectBrowser(object instance) : base(instance) { }
+        private ProjectBrowser(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ProjectBrowser")) { }
 
         public static ProjectBrowser Create()
         {
@@ -16,7 +17,7 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
 
         public bool IsTwoColumns()
         {
-            return CallMethodAsBool("IsTwoColumns", BindingFlags.Instance | BindingFlags.NonPublic);
+            return CallMethodAs<bool>("IsTwoColumns", BindingFlags.Instance | BindingFlags.NonPublic);
         }
     }
 }
