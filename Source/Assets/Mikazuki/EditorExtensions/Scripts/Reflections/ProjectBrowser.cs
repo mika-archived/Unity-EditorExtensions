@@ -4,10 +4,27 @@ using UnityEditor;
 
 namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
 {
-    public class ProjectBrowser : ReflectionTypeBase<object>
+    public class ProjectBrowser : ReflectionAccessor<EditorWindow>
     {
-        private ProjectBrowser(object instance) : base(instance) { }
-        private ProjectBrowser(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ProjectBrowser")) { }
+        public TreeViewState AssetTreeState
+        {
+            get
+            {
+                var state = AccessField<UnityEditor.IMGUI.Controls.TreeViewState>("m_AssetTreeState", BindingFlags.Instance | BindingFlags.NonPublic);
+                return new TreeViewState(state);
+            }
+        }
+
+        public ObjectListAreaState ListAreaState
+        {
+            get
+            {
+                var state = AccessField<object>("m_ListAreaState", BindingFlags.Instance | BindingFlags.NonPublic);
+                return new ObjectListAreaState(state);
+            }
+        }
+
+        private ProjectBrowser(EditorWindow instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ProjectBrowser")) { }
 
         public static ProjectBrowser Create()
         {

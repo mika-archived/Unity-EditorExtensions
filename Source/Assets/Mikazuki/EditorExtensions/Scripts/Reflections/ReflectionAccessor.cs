@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
 {
-    public class ReflectionTypeBase<TS>
+    public class ReflectionAccessor<TS>
     {
         private readonly Dictionary<string, Func<TS, object>> _fieldCaches;
         private readonly Type _isa;
@@ -15,7 +15,7 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
 
         protected TS Instance { get; private set; }
 
-        protected ReflectionTypeBase(TS instance)
+        protected ReflectionAccessor(TS instance)
         {
             Instance = instance;
             _fieldCaches = new Dictionary<string, Func<TS, object>>();
@@ -23,7 +23,7 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
             _propertyCaches = new Dictionary<string, Func<TS, object>>();
         }
 
-        protected ReflectionTypeBase(TS instance, Type isa)
+        protected ReflectionAccessor(TS instance, Type isa)
         {
             Instance = instance;
             _isa = isa;
