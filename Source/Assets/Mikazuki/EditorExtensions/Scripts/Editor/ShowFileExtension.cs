@@ -1,10 +1,13 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 using Assets.Mikazuki.EditorExtensions.Scripts.Reflections;
 
 using UnityEditor;
 
 using UnityEngine;
+
+using Object = UnityEngine.Object;
 
 namespace Assets.Mikazuki.EditorExtensions.Scripts.Editor
 {
@@ -45,6 +48,15 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Editor
         {
             if (_browser.AssetTreeState.IsRenaming(instanceId))
                 return;
+            if (_browser.AssetTreeState.ExpandedIds.Contains(instanceId))
+            {
+                var controller = _browser.AssetTree;
+                var row = controller.GetRowIndex(instanceId);
+                var rectForRow = controller.GetRectForRows(row, row, rect.width);
+
+                if (Math.Abs(rect.y - rectForRow.y) > 0)
+                    return;
+            }
 
             var filename = Path.GetFileNameWithoutExtension(path);
             var label = EditorStyles.label;
@@ -58,21 +70,29 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Editor
 
         private static void ShowExtensionOnTwoColumns(Rect rect, string path, string extension, int instanceId)
         {
+            var isMultiLine = rect.height > 20;
+            if (isMultiLine)
+                return;
             if (_browser.ListAreaState.IsRenaming(instanceId))
                 return;
-
-            var isSingleLine = rect.height <= 20;
-            if (isSingleLine)
+            if (_browser.ListAreaState.ExpandedInstanceIds.Contains(instanceId))
             {
-                var filename = Path.GetFileNameWithoutExtension(path);
-                var label = EditorStyles.label;
-                var vector = label.CalcSize(new GUIContent(filename));
+                var controller = _browser.ListArea;
+                var index = controller.LocalAssets.IndexOf(instanceId);
+                var rectForGrid = controller.LocalAssets.CalcRect(index);
 
-                rect.x += vector.x + 16;
-                rect.y += 2;
-
-                ShowLabel(rect, extension, _browser.ListAreaState.SelectedInstanceIds.Contains(instanceId));
+                if (Math.Abs(rect.y - rectForGrid.y) > 0)
+                    return;
             }
+
+            var filename = Path.GetFileNameWithoutExtension(path);
+            var label = EditorStyles.label;
+            var vector = label.CalcSize(new GUIContent(filename));
+
+            rect.x += vector.x + 16;
+            rect.y += 2;
+
+            ShowLabel(rect, extension, _browser.ListAreaState.SelectedInstanceIds.Contains(instanceId));
         }
 
         private static void ShowLabel(Rect rect, string extension, bool isActive)

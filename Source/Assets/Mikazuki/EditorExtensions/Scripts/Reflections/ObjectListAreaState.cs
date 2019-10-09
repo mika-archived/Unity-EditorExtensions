@@ -12,6 +12,11 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
             get { return AccessField<List<int>>("m_SelectedInstanceIDs", BindingFlags.Instance | BindingFlags.Public); }
         }
 
+        public List<int> ExpandedInstanceIds
+        {
+            get { return AccessField<List<int>>("m_ExpandedInstanceIDs", BindingFlags.Instance | BindingFlags.Public); }
+        }
+
         public ObjectListAreaState(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ObjectListAreaState")) { }
 
         public bool IsRenaming(int instanceId)
