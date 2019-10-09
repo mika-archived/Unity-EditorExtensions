@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 
-using UnityEditor;
-
-namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
+namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
 {
     public class RenameOverlay : ReflectionAccessor<object>
     {
@@ -11,7 +9,7 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
             get { return AccessPropertyAs<int>("userData", BindingFlags.Instance | BindingFlags.Public); }
         }
 
-        public RenameOverlay(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.RenameOverlay")) { }
+        public RenameOverlay(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.RenameOverlay")) { }
 
         public bool IsRenaming()
         {

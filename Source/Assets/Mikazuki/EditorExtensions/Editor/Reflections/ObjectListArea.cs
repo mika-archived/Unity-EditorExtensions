@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 
-using UnityEditor;
-
-namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
+namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
 {
     public class ObjectListArea : ReflectionAccessor<object>
     {
@@ -15,6 +13,6 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
             }
         }
 
-        public ObjectListArea(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ObjectListArea")) { }
+        public ObjectListArea(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.ObjectListArea")) { }
     }
 }

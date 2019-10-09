@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-using UnityEditor;
-
-namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
+namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
 {
     public class ObjectListAreaState : ReflectionAccessor<object>
     {
@@ -17,7 +15,7 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
             get { return AccessField<List<int>>("m_ExpandedInstanceIDs", BindingFlags.Instance | BindingFlags.Public); }
         }
 
-        public ObjectListAreaState(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ObjectListAreaState")) { }
+        public ObjectListAreaState(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.ObjectListAreaState")) { }
 
         public bool IsRenaming(int instanceId)
         {

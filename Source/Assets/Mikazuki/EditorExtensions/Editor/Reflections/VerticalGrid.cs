@@ -1,14 +1,12 @@
 ﻿using System.Reflection;
 
-using UnityEditor;
-
 using UnityEngine;
 
-namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
+namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
 {
     public class VerticalGrid : ReflectionAccessor<object>
     {
-        public VerticalGrid(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.VerticalGrid")) { }
+        public VerticalGrid(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.VerticalGrid")) { }
 
         public Rect CalcRect(int itemIdx, float yOffset)
         {

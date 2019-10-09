@@ -2,7 +2,7 @@
 
 using UnityEditor;
 
-namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
+namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
 {
     public class ProjectBrowser : ReflectionAccessor<EditorWindow>
     {
@@ -42,11 +42,11 @@ namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
             }
         }
 
-        private ProjectBrowser(EditorWindow instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ProjectBrowser")) { }
+        private ProjectBrowser(EditorWindow instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.ProjectBrowser")) { }
 
         public static ProjectBrowser Create()
         {
-            var browser = typeof(Editor).Assembly.GetType("UnityEditor.ProjectBrowser");
+            var browser = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.ProjectBrowser");
             return new ProjectBrowser(EditorWindow.GetWindow(browser, false, null, false));
         }
 

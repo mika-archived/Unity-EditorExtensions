@@ -1,14 +1,12 @@
 ﻿using System.Reflection;
 
-using UnityEditor;
-
 using UnityEngine;
 
-namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
+namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
 {
     public class ObjectListLocalGroup : ReflectionAccessor<object>
     {
-        public ObjectListLocalGroup(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.ObjectListArea+LocalGroup")) { }
+        public ObjectListLocalGroup(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.ObjectListArea+LocalGroup")) { }
 
         public int IndexOf(int instanceId)
         {

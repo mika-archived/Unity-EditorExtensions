@@ -1,14 +1,12 @@
 ﻿using System.Reflection;
 
-using UnityEditor;
-
 using UnityEngine;
 
-namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
+namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
 {
     public class TreeViewController : ReflectionAccessor<object>
     {
-        public TreeViewController(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.IMGUI.Controls.TreeViewController")) { }
+        public TreeViewController(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.IMGUI.Controls.TreeViewController")) { }
 
         public Rect GetRectForRows(int startRow, int endRow, float rowWidth)
         {

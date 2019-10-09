@@ -1,12 +1,10 @@
 ﻿using System.Reflection;
 
-using UnityEditor;
-
-namespace Assets.Mikazuki.EditorExtensions.Scripts.Reflections
+namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
 {
     public class TreeViewDataSource : ReflectionAccessor<object>
     {
-        public TreeViewDataSource(object instance) : base(instance, typeof(Editor).Assembly.GetType("UnityEditor.IMGUI.Controls.TreeViewDataSource")) { }
+        public TreeViewDataSource(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.IMGUI.Controls.TreeViewDataSource")) { }
 
         public int GetRow(int instanceId)
         {
