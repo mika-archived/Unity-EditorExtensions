@@ -51,8 +51,6 @@ namespace Assets.EditorExtensions.Editor
                 using (new Indent())
                     EditorGUILayout.LabelField(new GUIContent("Regular Expressions are supported. Delimiter is \"~\""));
                 EditorGUILayout.LabelField(new GUIContent("3. Enter the new name of the property in \"Replace To\""));
-                using (new Indent())
-                    EditorGUILayout.LabelField(new GUIContent("Regular Expressions are supported. Delimiter is \"~\""));
                 EditorGUILayout.LabelField(new GUIContent("4. Click the \"Bulk Rename\" button to proceed"));
             }
         }
