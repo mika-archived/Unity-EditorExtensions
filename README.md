@@ -8,4 +8,4 @@ This editor extension uses reflection for internal API access and may not work o
 
 | Show File Extension (`ShowFileExtension.cs`) |
 | -------------------- |
-|![Capture](https://user-images.githubusercontent.com/10832834/66486570-dd234f80-eae5-11e9-97e6-c1c18409ed89.PNG) |
+|<img width="350" src="https://user-images.githubusercontent.com/10832834/66540239-231ff800-eb66-11e9-9f00-5e1b3a7a1af8.png"> |
