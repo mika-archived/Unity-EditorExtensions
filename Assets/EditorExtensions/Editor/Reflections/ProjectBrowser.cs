@@ -2,7 +2,7 @@
 
 using UnityEditor;
 
-namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
+namespace Assets.EditorExtensions.Editor.Reflections
 {
     public class ProjectBrowser : ReflectionAccessor<EditorWindow>
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
+namespace Assets.EditorExtensions.Editor.Reflections
 {
     public class ReflectionAccessor<TS>
     {

@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 
-using Assets.Mikazuki.EditorExtensions.Editor.Controls;
+using Assets.EditorExtensions.Editor.Controls;
 
 using UnityEditor;
 
 using UnityEngine;
 
-namespace Assets.Mikazuki.EditorExtensions.Editor
+namespace Assets.EditorExtensions.Editor
 {
     public class AnimationClipBulkRename : EditorWindow
     {

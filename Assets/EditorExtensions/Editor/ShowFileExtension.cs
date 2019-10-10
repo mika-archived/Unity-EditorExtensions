@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-using Assets.Mikazuki.EditorExtensions.Editor.Reflections;
+using Assets.EditorExtensions.Editor.Reflections;
 
 using UnityEditor;
 
@@ -9,7 +9,7 @@ using UnityEngine;
 
 using Object = UnityEngine.Object;
 
-namespace Assets.Mikazuki.EditorExtensions.Editor
+namespace Assets.EditorExtensions.Editor
 {
     [InitializeOnLoad]
     public static class ShowFileExtension

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
+namespace Assets.EditorExtensions.Editor.Reflections
 {
     public class TreeViewDataSource : ReflectionAccessor<object>
     {

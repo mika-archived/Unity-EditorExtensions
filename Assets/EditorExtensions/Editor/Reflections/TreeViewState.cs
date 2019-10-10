@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
+namespace Assets.EditorExtensions.Editor.Reflections
 {
     public class TreeViewState : ReflectionAccessor<UnityEditor.IMGUI.Controls.TreeViewState>
     {

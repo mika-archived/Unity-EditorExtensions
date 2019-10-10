@@ -2,7 +2,7 @@
 
 using UnityEditor;
 
-namespace Assets.Mikazuki.EditorExtensions.Editor.Controls
+namespace Assets.EditorExtensions.Editor.Controls
 {
     internal class Indent : IDisposable
     {

@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Assets.Mikazuki.EditorExtensions.Editor.Reflections
+namespace Assets.EditorExtensions.Editor.Reflections
 {
     public class TreeViewController : ReflectionAccessor<object>
     {
