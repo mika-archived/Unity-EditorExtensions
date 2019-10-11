@@ -31,27 +31,27 @@ namespace Assets.EditorExtensions.Editor
         private void OnGUI()
         {
             // AnimationClip selector
-            _animationClip = (AnimationClip) EditorGUILayout.ObjectField(new GUIContent("Animation Clip"), _animationClip, typeof(AnimationClip), false);
+            _animationClip = EditorContent.ObjectPicker<AnimationClip>("Animation Clip", _animationClip, false);
 
             // Query for replacing property
-            _query = EditorGUILayout.TextField("Property Query", _query);
+            _query = EditorContent.TextField("Property Query", _query);
 
             // Strings for replacing to...
-            _replaceTo = EditorGUILayout.TextField("Replace To", _replaceTo);
+            _replaceTo = EditorContent.TextField("Replace To", _replaceTo);
 
-            using (new DisabledGroup(_animationClip == null || string.IsNullOrEmpty(_query) || string.IsNullOrEmpty(_replaceTo)))
-                if (GUILayout.Button("Bulk Rename")) BulkRename();
+            using (EditorContent.DisabledGroup(_animationClip == null || string.IsNullOrEmpty(_query) || string.IsNullOrEmpty(_replaceTo)))
+                if (EditorContent.Button("Bulk Rename")) BulkRename();
 
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField(new GUIContent("How to use:"));
-            using (new Indent())
+            EditorContent.Space();
+            EditorContent.Label("How to use:");
+            using (EditorContent.Indent())
             {
-                EditorGUILayout.LabelField(new GUIContent("1. Select an animation clip from assets that you want to rename properties"));
-                EditorGUILayout.LabelField(new GUIContent("2. Enter the name of the property that you want to rename in \"Property Query\""));
-                using (new Indent())
-                    EditorGUILayout.LabelField(new GUIContent("Regular Expressions are supported. Delimiter is \"~\""));
-                EditorGUILayout.LabelField(new GUIContent("3. Enter the new name of the property in \"Replace To\""));
-                EditorGUILayout.LabelField(new GUIContent("4. Click the \"Bulk Rename\" button to proceed"));
+                EditorContent.Label("1. Select an animation clip from assets that you want to rename properties");
+                EditorContent.Label("2. Enter the name of the property that you want to rename in \"Property Query\"");
+                using (EditorContent.Indent())
+                    EditorContent.Label("Regular Expressions are supported. Delimiter is \"~\"");
+                EditorContent.Label("3. Enter the new name of the property in \"Replace To\"");
+                EditorContent.Label("4. Click the \"Bulk Rename\" button to proceed");
             }
         }
 
