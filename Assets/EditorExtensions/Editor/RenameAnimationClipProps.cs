@@ -51,6 +51,7 @@ namespace Assets.EditorExtensions.Editor
                 var curve = AnimationUtility.GetEditorCurve(_animationClip, binding);
                 var replaced = binding;
                 replaced.propertyName = compiledQuery.Replace(binding.propertyName, _replaceTo);
+                Debug.Log(string.Format("Replaced {0} to {1}", binding.propertyName, replaced.propertyName));
 
                 AnimationUtility.SetEditorCurve(_animationClip, binding, null);
                 AnimationUtility.SetEditorCurve(_animationClip, replaced, curve);
