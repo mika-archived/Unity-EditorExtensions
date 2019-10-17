@@ -22,7 +22,7 @@ namespace Assets.EditorExtensions.Editor
         }
 
         // ReSharper disable once UnusedMember.Local
-        [MenuItem("Window/Editor Extensions/Component Projection")]
+        [MenuItem("Window/MUE2/Component Projection")]
         public static void Init()
         {
             var window = GetWindow<ComponentProjection>();
@@ -38,7 +38,7 @@ namespace Assets.EditorExtensions.Editor
             EditorContent.BeginObjectChanged();
             _sourceGameObject = EditorContent.ObjectPicker<GameObject>("Source GameObject", _sourceGameObject, true);
 
-            if (EditorContent.EndObjectChanged())
+            if (EditorContent.IsObjectChanged())
                 _projections.Clear();
 
             if (_sourceGameObject == null)

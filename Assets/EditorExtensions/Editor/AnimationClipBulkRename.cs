@@ -17,7 +17,7 @@ namespace Assets.EditorExtensions.Editor
         private string _replaceTo;
 
         // ReSharper disable once UnusedMember.Local
-        [MenuItem("Window/Editor Extensions/AnimationClip Bulk Rename")]
+        [MenuItem("Window/MUE2/AnimationClip Bulk Rename")]
         private static void Init()
         {
             var window = GetWindow<AnimationClipBulkRename>();

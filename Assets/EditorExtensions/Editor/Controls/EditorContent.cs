@@ -36,9 +36,39 @@ namespace Assets.EditorExtensions.Editor.Controls
             return EditorGUILayout.ObjectField(new GUIContent(label), field, typeof(T), allowSceneObjects, options) as T;
         }
 
+        public static int Select(string label, int selectedIndex, params string[] displayedOptions)
+        {
+            return Select(label, selectedIndex, displayedOptions, new GUILayoutOption[] { });
+        }
+
+        public static int Select(string label, int selectedIndex, string[] displayedOptions, params GUILayoutOption[] options)
+        {
+            return EditorGUILayout.Popup(label, selectedIndex, displayedOptions, options);
+        }
+
         public static void Space()
         {
             EditorGUILayout.Space();
+        }
+
+        public static int Tab(int selected, params string[] texts)
+        {
+            return Tab(selected, texts, new GUILayoutOption[] { });
+        }
+
+        public static int Tab(int selected, string[] texts, params GUILayoutOption[] options)
+        {
+            int newSelected;
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                GUILayout.FlexibleSpace();
+
+                newSelected = GUILayout.Toolbar(selected, texts, options);
+
+                GUILayout.FlexibleSpace();
+            }
+
+            return newSelected;
         }
 
         public static string TextField(string label, string text, params GUILayoutOption[] options)
@@ -53,7 +83,7 @@ namespace Assets.EditorExtensions.Editor.Controls
             EditorGUI.BeginChangeCheck();
         }
 
-        public static bool EndObjectChanged()
+        public static bool IsObjectChanged()
         {
             return EditorGUI.EndChangeCheck();
         }
