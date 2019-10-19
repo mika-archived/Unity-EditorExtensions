@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Assets.EditorExtensions.Editor.Controls
+namespace MUE2.Editor.Controls
 {
     internal static class EditorContent
     {
@@ -28,7 +28,8 @@ namespace Assets.EditorExtensions.Editor.Controls
 
         public static void Label(string label, params GUILayoutOption[] options)
         {
-            EditorGUILayout.LabelField(label, options);
+            var style = new GUIStyle { wordWrap = true, margin = new RectOffset(5, 5, 0, 0) };
+            EditorGUILayout.LabelField(label, style, options);
         }
 
         public static T ObjectPicker<T>(string label, Object field, bool allowSceneObjects, params GUILayoutOption[] options) where T : class

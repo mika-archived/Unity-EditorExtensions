@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace Assets.EditorExtensions.Editor.Reflections
+namespace MUE2.Editor.Reflections
 {
     public class TreeViewState : ReflectionAccessor<UnityEditor.IMGUI.Controls.TreeViewState>
     {

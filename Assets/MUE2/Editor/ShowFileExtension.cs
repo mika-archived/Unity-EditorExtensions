@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-using Assets.EditorExtensions.Editor.Reflections;
+using MUE2.Editor.Reflections;
 
 using UnityEditor;
 
@@ -9,7 +9,7 @@ using UnityEngine;
 
 using Object = UnityEngine.Object;
 
-namespace Assets.EditorExtensions.Editor
+namespace MUE2.Editor
 {
     [InitializeOnLoad]
     public static class ShowFileExtension

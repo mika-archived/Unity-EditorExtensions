@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using Assets.EditorExtensions.Editor.Controls;
+using MUE2.Editor.Controls;
 
 using UnityEditor;
 
 using UnityEngine;
 
-namespace Assets.EditorExtensions.Editor
+namespace MUE2.Editor
 {
     public class ComponentProjection : EditorWindow
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Assets.EditorExtensions.Editor.Reflections
+namespace MUE2.Editor.Reflections
 {
     public class ReflectionAccessor<TS>
     {

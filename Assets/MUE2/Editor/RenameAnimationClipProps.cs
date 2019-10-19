@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 
-using Assets.EditorExtensions.Editor.Controls;
+using MUE2.Editor.Controls;
 
 using UnityEditor;
 
 using UnityEngine;
 
-namespace Assets.EditorExtensions.Editor
+namespace MUE2.Editor
 {
     public class RenameAnimationClipProps : EditorWindow
     {

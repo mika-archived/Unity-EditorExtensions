@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Assets.EditorExtensions.Editor.Reflections
+namespace MUE2.Editor.Reflections
 {
     public class TreeViewDataSource : ReflectionAccessor<object>
     {

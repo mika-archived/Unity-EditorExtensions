@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Assets.EditorExtensions.Editor.Reflections
+namespace MUE2.Editor.Reflections
 {
     public class VerticalGrid : ReflectionAccessor<object>
     {

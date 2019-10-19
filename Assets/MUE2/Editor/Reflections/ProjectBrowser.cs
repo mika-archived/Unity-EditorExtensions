@@ -2,7 +2,7 @@
 
 using UnityEditor;
 
-namespace Assets.EditorExtensions.Editor.Reflections
+namespace MUE2.Editor.Reflections
 {
     public class ProjectBrowser : ReflectionAccessor<EditorWindow>
     {
