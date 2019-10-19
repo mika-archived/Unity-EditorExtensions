@@ -14,9 +14,6 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
-# Never ignore Asset meta data
-!/[Aa]ssets/**/*.meta
-
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
@@ -411,5 +408,7 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/unity,visualstudio
 
-# 
+# Never ignore Asset meta data
+!/[Aa]ssets/**/*.meta
+
 Assets/Examples/
