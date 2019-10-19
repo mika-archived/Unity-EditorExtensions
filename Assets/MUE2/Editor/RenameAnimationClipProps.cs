@@ -11,7 +11,6 @@ namespace MUE2.Editor
 {
     public class RenameAnimationClipProps : EditorWindow
     {
-        private readonly Regex _regexPattern = new Regex("^~.*~$", RegexOptions.Compiled);
         private AnimationClip _animationClip;
         private string _query;
         private string _replaceTo;
