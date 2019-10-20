@@ -1,0 +1,191 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 11500000, guid: 3f21e1b6ee553ee47b1de3ed0168c343, type: 3}
+  m_Name: QuicheSkirt
+  m_EditorClassIdentifier: 
+  m_Configs:
+  - m_DynamicBoneProperties:
+      m_Colliders:
+      - QuichePonytail_m/Armature/Hips
+      - QuichePonytail_m/Armature/Hips/UpperLeg_L
+      - QuichePonytail_m/Armature/Hips/UpperLeg_R
+      m_Damping: 0.4
+      m_DampingDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DistanceToObject: 20
+      m_DistantDisable: 1
+      m_Elasticity: 0.05
+      m_ElasticityDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_EndLength: 0
+      m_EndOffset: {x: 0, y: 0.01, z: 0}
+      m_Exclusion: []
+      m_Force: {x: 0, y: 0, z: 0}
+      m_FreezeAxis: 0
+      m_Gravity: {x: 0, y: 0, z: 0}
+      m_Inert: 0.85
+      m_InertDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_Radius: 4
+      m_RadiusDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_ReferenceObject: (null)
+      m_RootReference: QuichePonytail_m/Armature/Hips/skirtA_L
+      m_Stiffness: 0.06
+      m_StiffnessDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_UpdateMode: 0
+      m_UpdateRate: 60
+    m_DynamicBoneColliderProperties:
+      m_Bound: 0
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Direction: 0
+      m_Height: 0
+      m_Radius: 0
+    m_EffectiveAs: DynamicBone
+    m_Name: QuichePonytail_m/Armature/Hips/skirtA_L
+    m_NamingConvention: .*/Armature/Hips/skirt[^/]*?
+  - m_DynamicBoneProperties:
+      m_Colliders: []
+      m_Damping: 0
+      m_DampingDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DistanceToObject: 0
+      m_DistantDisable: 0
+      m_Elasticity: 0
+      m_ElasticityDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_EndLength: 0
+      m_EndOffset: {x: 0, y: 0, z: 0}
+      m_Exclusion: []
+      m_Force: {x: 0, y: 0, z: 0}
+      m_FreezeAxis: 0
+      m_Gravity: {x: 0, y: 0, z: 0}
+      m_Inert: 0
+      m_InertDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_Radius: 0
+      m_RadiusDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_ReferenceObject: 
+      m_RootReference: 
+      m_Stiffness: 0
+      m_StiffnessDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_UpdateMode: 0
+      m_UpdateRate: 0
+    m_DynamicBoneColliderProperties:
+      m_Bound: 0
+      m_Center: {x: 0, y: -0.01, z: 0}
+      m_Direction: 1
+      m_Height: 40
+      m_Radius: 8
+    m_EffectiveAs: DynamicBoneCollider
+    m_Name: QuichePonytail_m/Armature/Hips
+    m_NamingConvention: .*/Armature/Hips
+  - m_DynamicBoneProperties:
+      m_Colliders: []
+      m_Damping: 0
+      m_DampingDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DistanceToObject: 0
+      m_DistantDisable: 0
+      m_Elasticity: 0
+      m_ElasticityDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_EndLength: 0
+      m_EndOffset: {x: 0, y: 0, z: 0}
+      m_Exclusion: []
+      m_Force: {x: 0, y: 0, z: 0}
+      m_FreezeAxis: 0
+      m_Gravity: {x: 0, y: 0, z: 0}
+      m_Inert: 0
+      m_InertDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_Radius: 0
+      m_RadiusDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_ReferenceObject: 
+      m_RootReference: 
+      m_Stiffness: 0
+      m_StiffnessDistrib:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_UpdateMode: 0
+      m_UpdateRate: 0
+    m_DynamicBoneColliderProperties:
+      m_Bound: 0
+      m_Center: {x: 0, y: 15, z: 0}
+      m_Direction: 1
+      m_Height: 30
+      m_Radius: 7.5
+    m_EffectiveAs: DynamicBoneCollider
+    m_Name: QuichePonytail_m/Armature/Hips/UpperLeg_L
+    m_NamingConvention: .*/Armature/Hips/UpperLeg_[^/]*?
