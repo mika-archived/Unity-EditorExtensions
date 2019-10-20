@@ -13,6 +13,11 @@ namespace MUE2.Editor.Models
             return TransformToStringPath(component.transform);
         }
 
+        private static string TransformToStringPathByGameObject(GameObject gameObject)
+        {
+            return TransformToStringPath(gameObject.transform);
+        }
+
         private static string TransformToStringPathByTransform(Transform transform)
         {
             var path = new List<string>();
@@ -33,6 +38,8 @@ namespace MUE2.Editor.Models
                 return TransformToStringPathByTransform((Transform) @object);
             if (@object is Component)
                 return TransformToStringPathByComponent((Component) @object);
+            if (@object is GameObject)
+                return TransformToStringPathByGameObject((GameObject) @object);
             if (@object is Object)
                 return ((Object) @object).name;
             return @object == null ? "(null)" : "(unknown)";
