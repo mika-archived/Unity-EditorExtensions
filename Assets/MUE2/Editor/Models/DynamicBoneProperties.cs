@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+
+using MUE2.Editor.Reflections;
 
 using UnityEditor;
 
@@ -14,11 +17,12 @@ namespace MUE2.Editor.Models
     {
         public static DynamicBoneProperties CreateObject(Component component)
         {
+            var path = PropertyTransformer.TransformToStringPath(component);
             using (var serializer = new SerializedObject(component))
             {
                 return new DynamicBoneProperties
                 {
-                    Colliders = PropertyTransformer.TransformToList(serializer.FindProperty("m_Colliders")).Select(w => PropertyTransformer.TransformToStringPath(w.objectReferenceValue)).ToList(),
+                    Colliders = PropertyTransformer.TransformToList(serializer.FindProperty("m_Colliders")).Select(w => ToRelativePath(path, PropertyTransformer.TransformToStringPath(w.objectReferenceValue))).ToList(),
                     Damping = serializer.FindProperty("m_Damping").floatValue,
                     DampingDistrib = serializer.FindProperty("m_DampingDistrib").animationCurveValue,
                     DistanceToObject = serializer.FindProperty("m_DistanceToObject").floatValue,
@@ -27,7 +31,7 @@ namespace MUE2.Editor.Models
                     ElasticityDistrib = serializer.FindProperty("m_ElasticityDistrib").animationCurveValue,
                     EndLength = serializer.FindProperty("m_EndLength").floatValue,
                     EndOffset = serializer.FindProperty("m_EndOffset").vector3Value,
-                    Exclusion = PropertyTransformer.TransformToList(serializer.FindProperty("m_Exclusions")).Select(w => PropertyTransformer.TransformToStringPath(w.objectReferenceValue)).ToList(),
+                    Exclusion = PropertyTransformer.TransformToList(serializer.FindProperty("m_Exclusions")).Select(w => ToRelativePath(path, PropertyTransformer.TransformToStringPath(w.objectReferenceValue))).ToList(),
                     Force = serializer.FindProperty("m_Force").vector3Value,
                     FreezeAxis = serializer.FindProperty("m_FreezeAxis").enumValueIndex,
                     Gravity = serializer.FindProperty("m_Gravity").vector3Value,
@@ -35,8 +39,8 @@ namespace MUE2.Editor.Models
                     InertDistrib = serializer.FindProperty("m_InertDistrib").animationCurveValue,
                     Radius = serializer.FindProperty("m_Radius").floatValue,
                     RadiusDistrib = serializer.FindProperty("m_RadiusDistrib").animationCurveValue,
-                    ReferenceObject = PropertyTransformer.TransformToStringPath(serializer.FindProperty("m_ReferenceObject").objectReferenceValue),
-                    RootReference = PropertyTransformer.TransformToStringPath(serializer.FindProperty("m_Root").objectReferenceValue),
+                    ReferenceObject = ToRelativePath(path, PropertyTransformer.TransformToStringPath(serializer.FindProperty("m_ReferenceObject").objectReferenceValue)),
+                    RootReference = ToRelativePath(path, PropertyTransformer.TransformToStringPath(serializer.FindProperty("m_Root").objectReferenceValue)),
                     Stiffness = serializer.FindProperty("m_Stiffness").floatValue,
                     StiffnessDistrib = serializer.FindProperty("m_StiffnessDistrib").animationCurveValue,
                     UpdateMode = serializer.FindProperty("m_UpdateMode").enumValueIndex,
@@ -45,11 +49,55 @@ namespace MUE2.Editor.Models
             }
         }
 
+        private static string ToRelativePath(string from, string to)
+        {
+            if (to == "(null)")
+                return "(null)";
+            if (from == to)
+                return "(self)";
+
+            var fromUri = new Uri(string.Format("file:///{0}", from));
+            var toUri = new Uri(string.Format("file:///{0}", to));
+            return string.Format("../{0}", fromUri.MakeRelativeUri(toUri));
+        }
+
+        private static string ToAbsolutePath(string @base, string to)
+        {
+            if (to == "(null)")
+                return "";
+            if (to == "(self)")
+                return @base;
+
+            return Path.GetFullPath(Path.Combine(@base, to)).Replace(Environment.CurrentDirectory, "").Substring(1);
+        }
+
+        private static Transform ToActualObject(string path, string relative, GameObject rootObject)
+        {
+            var absolute = ToAbsolutePath(path, relative).Replace(Path.DirectorySeparatorChar.ToString(), "/");
+            var transforms = rootObject.GetComponentsInChildren<Transform>();
+            return transforms.SingleOrDefault(w => PropertyTransformer.TransformToStringPath(w) == absolute);
+        }
+
+        private static void ApplyArrayToProperty(SerializedProperty property, List<Transform> transforms)
+        {
+            if (transforms.Count == 0)
+                return;
+
+            for (var i = 0; i < transforms.Count; i++)
+            {
+                property.InsertArrayElementAtIndex(i);
+                property.GetArrayElementAtIndex(i).objectReferenceValue = transforms[i].gameObject.GetComponent(TypeFinder.GetType("DynamicBoneCollider"));
+            }
+
+            property.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        }
+
         public void ApplyProperties(Component component, GameObject root)
         {
+            var path = PropertyTransformer.TransformToStringPath(component);
             using (var serializer = new SerializedObject(component))
             {
-                // m_Colliders
+                ApplyArrayToProperty(serializer.FindProperty("m_Colliders"), Colliders.Select(w => ToActualObject(path, w, root)).ToList());
                 serializer.FindProperty("m_Damping").floatValue = Damping;
                 serializer.FindProperty("m_DampingDistrib").animationCurveValue = DampingDistrib;
                 serializer.FindProperty("m_DistanceToObject").floatValue = DistanceToObject;
@@ -58,8 +106,7 @@ namespace MUE2.Editor.Models
                 serializer.FindProperty("m_ElasticityDistrib").animationCurveValue = ElasticityDistrib;
                 serializer.FindProperty("m_EndLength").floatValue = EndLength;
                 serializer.FindProperty("m_EndOffset").vector3Value = EndOffset;
-
-                // Exclusion
+                ApplyArrayToProperty(serializer.FindProperty("m_Exclusions"), Exclusion.Select(w => ToActualObject(path, w, root)).ToList());
                 serializer.FindProperty("m_Force").vector3Value = Force;
                 serializer.FindProperty("m_FreezeAxis").enumValueIndex = FreezeAxis;
                 serializer.FindProperty("m_Gravity").vector3Value = Gravity;
@@ -67,9 +114,8 @@ namespace MUE2.Editor.Models
                 serializer.FindProperty("m_InertDistrib").animationCurveValue = InertDistrib;
                 serializer.FindProperty("m_Radius").floatValue = Radius;
                 serializer.FindProperty("m_RadiusDistrib").animationCurveValue = RadiusDistrib;
-
-                // ReferenceObject
-                // Root
+                serializer.FindProperty("m_ReferenceObject").objectReferenceValue = ToActualObject(path, ReferenceObject, root);
+                serializer.FindProperty("m_Root").objectReferenceValue = ToActualObject(path, RootReference, root);
                 serializer.FindProperty("m_Stiffness").floatValue = Stiffness;
                 serializer.FindProperty("m_StiffnessDistrib").animationCurveValue = StiffnessDistrib;
                 serializer.FindProperty("m_UpdateMode").enumValueIndex = UpdateMode;
