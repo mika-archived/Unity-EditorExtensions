@@ -22,6 +22,6 @@ internal static class PackageExport
 
         Debug.Log(string.Format("Export: {0}", string.Join(", ", assets)));
 
-        AssetDatabase.ExportPackage(assets, "./MUE2.unitypackage", ExportPackageOptions.Default);
+        AssetDatabase.ExportPackage(assets, "./Packages/MUE2.unitypackage", ExportPackageOptions.Default);
     }
 }
