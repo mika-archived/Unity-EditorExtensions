@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 executors:
   unity:
@@ -6,7 +6,7 @@ executors:
       - image: gableroux/unity3d:2017.4.27f1
 
 jobs:
-  build:
+  create-package:
     executor: unity
     steps:
       - checkout
@@ -15,3 +15,9 @@ jobs:
       - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -projectPath . -executeMethod PackageExport.Export
       - store_artifacts:
           path: ./Packages
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - create-package
