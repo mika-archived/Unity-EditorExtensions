@@ -12,10 +12,11 @@ jobs:
       - checkout
       - run: mkdir -p /root/.cache/unity3d
       - run: mkdir -p /root/.local/share/unity3d/Unity
+      - run: mkdir -p /root/project/Packages
       - run: echo $UNITY_LICENSE | base64 --decode > /root/.local/share/unity3d/Unity/Unity_lic.ulf
       - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -projectPath /root/project -executeMethod PackageExport.Export
       - store_artifacts:
-          path: ./Packages
+          path: /root/project/Packages
 
 workflows:
   version: 2
