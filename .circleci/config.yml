@@ -9,6 +9,11 @@ jobs:
   create-package:
     executor: unity
     steps:
+      # workaround CircleCI's fallback git returns `object not found` when pushing tags
+      - run:
+          command: |
+            apt update
+            apt install -y git
       - checkout
       - run: mkdir -p /root/.cache/unity3d
       - run: mkdir -p /root/.local/share/unity3d/Unity
@@ -35,7 +40,6 @@ jobs:
             tar -xvf ./ghr.tar.gz --strip 1 --directory ./ghr
       - run: ./ghr/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ${CIRCLE_TAG} /root/project/Packages
 
-
 workflows:
   version: 2
   build:
@@ -58,4 +62,3 @@ workflows:
             branches:
               ignore:
                 - /.*/
-
