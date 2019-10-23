@@ -1,0 +1,61 @@
+version: 2.1
+
+executors:
+  unity:
+    docker:
+      - image: gableroux/unity3d:2017.4.27f1
+
+jobs:
+  create-package:
+    executor: unity
+    steps:
+      - checkout
+      - run: mkdir -p /root/.cache/unity3d
+      - run: mkdir -p /root/.local/share/unity3d/Unity
+      - run: mkdir -p /root/project/Packages
+      - run: echo $UNITY_LICENSE | base64 --decode > /root/.local/share/unity3d/Unity/Unity_lic.ulf
+      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -projectPath /root/project -executeMethod PackageExport.Export
+      - store_artifacts:
+          path: /root/project/Packages
+      - save_cache:
+          paths:
+            - /root/project/Packages
+          key: v1-artifacts-{{ .Branch }}-{{ .Revision }}
+
+  upload-package:
+    executor: unity
+    steps:
+      - restore_cache:
+          keys:
+            - v1-artifacts-{{ .Branch }}-{{ .Revision }}
+      - run:
+          command: |
+            wget https://github.com/tcnksm/ghr/releases/download/v0.12.1/ghr_v0.12.1_linux_amd64.tar.gz -O ghr.tar.gz
+            mkdir ./ghr
+            tar -xvf ./ghr.tar.gz --strip 1 --directory ./ghr
+      - run: ./ghr/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} ${CIRCLE_TAG} /root/project/Packages
+
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - create-package:
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              only:
+                - /.*/
+      - upload-package:
+          requires:
+            - create-package
+          filters:
+            tags:
+              only:
+                - /^v.*/
+            branches:
+              ignore:
+                - /.*/
+
