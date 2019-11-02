@@ -36,6 +36,12 @@ namespace MUE2.Editor
             if (string.IsNullOrEmpty(extension))
                 return;
 
+#if UNITY_2018_1_OR_NEWER
+            var package = Packages.GetForAssetPath(path);
+            if (package != null && package.assetPath == path)
+                return;
+#endif
+
             var instanceId = AssetDatabase.LoadAssetAtPath<Object>(path).GetInstanceID();
 
             if (IsTwoColumns())
