@@ -4,6 +4,13 @@ Unity Editor Extensions for 2017.4.28f1.
 This editor extension uses reflection for internal API access and may not work on other versions.
 
 
+## Versions
+
+| MUE2 Version | Unity Version |
+| :----------: | :-----------: |
+| `0.1.0`      | `2017.4.28f1` |
+
+
 ## Features
 
 | Show File Extension | Rename AnimationClip Props | Components Projection |
