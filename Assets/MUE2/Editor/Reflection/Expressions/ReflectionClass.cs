@@ -18,7 +18,8 @@ namespace MUE2.Editor.Reflection.Expressions
             _instance = instance;
             _type = type;
 
-            Caches[_type] = new Cache();
+            if (Caches[_type] == null)
+                Caches[_type] = new Cache();
         }
 
         protected TResult InvokeMethod<TResult>(string name, BindingFlags bindingFlags, params object[] parameters)
