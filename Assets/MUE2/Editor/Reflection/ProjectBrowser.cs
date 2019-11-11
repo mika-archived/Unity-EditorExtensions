@@ -1,16 +1,18 @@
 ﻿using System.Reflection;
 
+using MUE2.Editor.Reflection.Expressions;
+
 using UnityEditor;
 
-namespace MUE2.Editor.Reflections
+namespace MUE2.Editor.Reflection
 {
-    public class ProjectBrowser : ReflectionAccessor<EditorWindow>
+    public class ProjectBrowser : ReflectionClass
     {
         public TreeViewController AssetTree
         {
             get
             {
-                var controller = AccessField<object>("m_AssetTree", BindingFlags.Instance | BindingFlags.NonPublic);
+                var controller = InvokeMember<object>("m_AssetTree");
                 return new TreeViewController(controller);
             }
         }
@@ -19,7 +21,7 @@ namespace MUE2.Editor.Reflections
         {
             get
             {
-                var state = AccessField<UnityEditor.IMGUI.Controls.TreeViewState>("m_AssetTreeState", BindingFlags.Instance | BindingFlags.NonPublic);
+                var state = InvokeMember<UnityEditor.IMGUI.Controls.TreeViewState>("m_AssetTreeState");
                 return new TreeViewState(state);
             }
         }
@@ -28,7 +30,7 @@ namespace MUE2.Editor.Reflections
         {
             get
             {
-                var area = AccessField<object>("m_ListArea", BindingFlags.Instance | BindingFlags.NonPublic);
+                var area = InvokeMember<object>("m_ListArea");
                 return new ObjectListArea(area);
             }
         }
@@ -37,7 +39,7 @@ namespace MUE2.Editor.Reflections
         {
             get
             {
-                var state = AccessField<object>("m_ListAreaState", BindingFlags.Instance | BindingFlags.NonPublic);
+                var state = InvokeMember<object>("m_ListAreaState");
                 return new ObjectListAreaState(state);
             }
         }
@@ -52,7 +54,7 @@ namespace MUE2.Editor.Reflections
 
         public bool IsTwoColumns()
         {
-            return CallMethodAs<bool>("IsTwoColumns", BindingFlags.Instance | BindingFlags.NonPublic);
+            return InvokeMethod<bool>("IsTwoColumns", BindingFlags.Instance | BindingFlags.NonPublic);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MUE2.Editor.Reflections
+namespace MUE2.Editor.Reflection
 {
     internal static class TypeFinder
     {

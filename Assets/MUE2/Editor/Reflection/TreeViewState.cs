@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 
-namespace MUE2.Editor.Reflections
+using MUE2.Editor.Reflection.Expressions.Generic;
+
+namespace MUE2.Editor.Reflection
 {
-    public class TreeViewState : ReflectionAccessor<UnityEditor.IMGUI.Controls.TreeViewState>
+    public class TreeViewState : ReflectionClass<UnityEditor.IMGUI.Controls.TreeViewState>
     {
         private readonly RenameOverlay _renameOverlay;
 
@@ -19,7 +20,7 @@ namespace MUE2.Editor.Reflections
 
         public TreeViewState(UnityEditor.IMGUI.Controls.TreeViewState instance) : base(instance)
         {
-            _renameOverlay = new RenameOverlay(AccessProperty<object>("renameOverlay", BindingFlags.Instance | BindingFlags.NonPublic));
+            _renameOverlay = new RenameOverlay(InvokeMember<object>("renameOverlay"));
         }
 
         public bool IsRenaming(int instanceId)

@@ -1,14 +1,16 @@
 ﻿using System.Reflection;
 
-namespace MUE2.Editor.Reflections
+using MUE2.Editor.Reflection.Expressions;
+
+namespace MUE2.Editor.Reflection
 {
-    public class TreeViewDataSource : ReflectionAccessor<object>
+    public class TreeViewDataSource : ReflectionClass
     {
         public TreeViewDataSource(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.IMGUI.Controls.TreeViewDataSource")) { }
 
         public int GetRow(int instanceId)
         {
-            return CallMethodAs<int>("GetRow", BindingFlags.Instance | BindingFlags.Public, instanceId);
+            return InvokeMethod<int>("GetRow", BindingFlags.Instance | BindingFlags.Public, instanceId);
         }
     }
 }

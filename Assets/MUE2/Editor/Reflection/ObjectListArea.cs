@@ -1,14 +1,14 @@
-﻿using System.Reflection;
+﻿using MUE2.Editor.Reflection.Expressions;
 
-namespace MUE2.Editor.Reflections
+namespace MUE2.Editor.Reflection
 {
-    public class ObjectListArea : ReflectionAccessor<object>
+    public class ObjectListArea : ReflectionClass
     {
         public ObjectListLocalGroup LocalAssets
         {
             get
             {
-                var localAssets = AccessField<object>("m_LocalAssets", BindingFlags.Instance | BindingFlags.NonPublic);
+                var localAssets = InvokeMember<object>("m_LocalAssets");
                 return new ObjectListLocalGroup(localAssets);
             }
         }
