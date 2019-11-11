@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 using MUE2.Editor.Reflection;
@@ -17,6 +18,7 @@ namespace MUE2.Editor
         private static GUIStyle _activeStyle;
         private static GUIStyle _normalStyle;
         private static ProjectBrowser _browser;
+        private static readonly Dictionary<string, string> Caches = new Dictionary<string, string>();
 
         static ShowFileExtension()
         {
@@ -27,7 +29,13 @@ namespace MUE2.Editor
 
         private static void ProjectWindowItemOnGui(string guid, Rect selectionRect)
         {
-            var path = AssetDatabase.GUIDToAssetPath(guid);
+            string path = null;
+            Caches.TryGetValue(guid, out path);
+            if (ReferenceEquals(path, null))
+            {
+                path = AssetDatabase.GUIDToAssetPath(guid);
+                Caches.Add(guid, path);
+            }
 
             if (string.IsNullOrEmpty(path))
                 return;
