@@ -14,8 +14,8 @@ namespace MUE2.Editor.Models
 
         public List<DynamicBoneConfiguration> Configs
         {
-            get { return m_Configs; }
-            set { m_Configs = value; }
+            get => m_Configs;
+            set => m_Configs = value;
         }
 
         public DynamicBonePreset()

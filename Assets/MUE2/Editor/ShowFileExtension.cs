@@ -29,8 +29,7 @@ namespace MUE2.Editor
 
         private static void ProjectWindowItemOnGui(string guid, Rect selectionRect)
         {
-            string path = null;
-            Caches.TryGetValue(guid, out path);
+            Caches.TryGetValue(guid, out var path);
             if (ReferenceEquals(path, null))
             {
                 path = AssetDatabase.GUIDToAssetPath(guid);

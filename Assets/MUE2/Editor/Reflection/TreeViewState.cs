@@ -8,15 +8,9 @@ namespace MUE2.Editor.Reflection
     {
         private readonly RenameOverlay _renameOverlay;
 
-        public List<int> SelectedIds
-        {
-            get { return Instance.selectedIDs; }
-        }
+        public List<int> SelectedIds => Instance.selectedIDs;
 
-        public List<int> ExpandedIds
-        {
-            get { return Instance.expandedIDs; }
-        }
+        public List<int> ExpandedIds => Instance.expandedIDs;
 
         public TreeViewState(UnityEditor.IMGUI.Controls.TreeViewState instance) : base(instance)
         {

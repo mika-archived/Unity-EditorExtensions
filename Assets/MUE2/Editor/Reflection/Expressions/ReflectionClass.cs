@@ -24,14 +24,13 @@ namespace MUE2.Editor.Reflection.Expressions
 
         protected TResult InvokeMethod<TResult>(string name, BindingFlags bindingFlags, params object[] parameters)
         {
-            Func<object, object[], object> cache;
-            ((Cache) Caches[_type]).Methods.TryGetValue(name, out cache);
+            ((Cache) Caches[_type]).Methods.TryGetValue(name, out var cache);
             if (cache != null)
                 return (TResult) cache.Invoke(_instance, parameters);
 
             var mi = _instance.GetType().GetMethod(name, bindingFlags);
             if (mi == null)
-                throw new InvalidOperationException(string.Format("Method '{0}' is not found in this class", name));
+                throw new InvalidOperationException($"Method '{name}' is not found in this class");
 
             ((Cache) Caches[_type]).Methods.Add(name, CreateMethodAccessor(mi));
             return (TResult) ((Cache) Caches[_type]).Methods[name].Invoke(_instance, parameters);
@@ -39,8 +38,7 @@ namespace MUE2.Editor.Reflection.Expressions
 
         protected TResult InvokeMember<TResult>(string name)
         {
-            Func<object, object> cache;
-            ((Cache) Caches[_type]).Members.TryGetValue(name, out cache);
+            ((Cache) Caches[_type]).Members.TryGetValue(name, out var cache);
             if (cache != null)
                 return (TResult) cache.Invoke(_instance);
 
@@ -70,7 +68,7 @@ namespace MUE2.Editor.Reflection.Expressions
             }
             catch
             {
-                throw new InvalidOperationException(string.Format("Member '{0}' is not found in this class", name));
+                throw new InvalidOperationException($"Member '{name}' is not found in this class");
             }
         }
 

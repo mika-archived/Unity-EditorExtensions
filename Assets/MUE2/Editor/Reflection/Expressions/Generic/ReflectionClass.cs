@@ -8,7 +8,7 @@ namespace MUE2.Editor.Reflection.Expressions.Generic
 {
     public class ReflectionClass<T> where T : class
     {
-        protected T Instance { get; private set; }
+        protected T Instance { get; }
 
         protected ReflectionClass(T instance)
         {
@@ -17,14 +17,13 @@ namespace MUE2.Editor.Reflection.Expressions.Generic
 
         protected TResult InvokeMethod<TResult>(string name, BindingFlags bindingFlags, params object[] parameters)
         {
-            Func<T, object[], object> cache;
-            Cache<T>.Methods.TryGetValue(name, out cache);
+            Cache<T>.Methods.TryGetValue(name, out var cache);
             if (cache != null)
                 return (TResult) cache.Invoke(Instance, parameters);
 
             var mi = Instance.GetType().GetMethod(name, bindingFlags);
             if (mi == null)
-                throw new InvalidOperationException(string.Format("Method '{0}' is not found in this class", name));
+                throw new InvalidOperationException($"Method '{name}' is not found in this class");
 
             Cache<T>.Methods.Add(name, CreateMethodAccessor(mi));
             return (TResult) Cache<T>.Methods[name].Invoke(Instance, parameters);
@@ -32,8 +31,7 @@ namespace MUE2.Editor.Reflection.Expressions.Generic
 
         protected TResult InvokeMember<TResult>(string name)
         {
-            Func<T, object> cache;
-            Cache<T>.Members.TryGetValue(name, out cache);
+            Cache<T>.Members.TryGetValue(name, out var cache);
             if (cache != null)
                 return (TResult) cache.Invoke(Instance);
 
@@ -63,7 +61,7 @@ namespace MUE2.Editor.Reflection.Expressions.Generic
             }
             catch
             {
-                throw new InvalidOperationException(string.Format("Member '{0}' is not found in this class", name));
+                throw new InvalidOperationException($"Member '{name}' is not found in this class");
             }
         }
 

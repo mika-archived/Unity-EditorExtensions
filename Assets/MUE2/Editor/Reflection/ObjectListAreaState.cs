@@ -6,15 +6,9 @@ namespace MUE2.Editor.Reflection
 {
     public class ObjectListAreaState : ReflectionClass
     {
-        public List<int> SelectedInstanceIds
-        {
-            get { return InvokeMember<List<int>>("m_SelectedInstanceIDs"); }
-        }
+        public List<int> SelectedInstanceIds => InvokeMember<List<int>>("m_SelectedInstanceIDs");
 
-        public List<int> ExpandedInstanceIds
-        {
-            get { return InvokeMember<List<int>>("m_ExpandedInstanceIDs"); }
-        }
+        public List<int> ExpandedInstanceIds => InvokeMember<List<int>>("m_ExpandedInstanceIDs");
 
         public ObjectListAreaState(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.ObjectListAreaState")) { }
 

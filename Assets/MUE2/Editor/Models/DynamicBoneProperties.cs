@@ -56,9 +56,9 @@ namespace MUE2.Editor.Models
             if (from == to)
                 return "(self)";
 
-            var fromUri = new Uri(string.Format("file:///{0}", from));
-            var toUri = new Uri(string.Format("file:///{0}", to));
-            return string.Format("../{0}", fromUri.MakeRelativeUri(toUri));
+            var fromUri = new Uri($"file:///{@from}");
+            var toUri = new Uri($"file:///{to}");
+            return $"../{fromUri.MakeRelativeUri(toUri)}";
         }
 
         private static string ToAbsolutePath(string @base, string to)

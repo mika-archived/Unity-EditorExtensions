@@ -6,10 +6,7 @@ namespace MUE2.Editor.Reflection
 {
     public class RenameOverlay : ReflectionClass
     {
-        public int UserData
-        {
-            get { return InvokeMember<int>("userData"); }
-        }
+        public int UserData => InvokeMember<int>("userData");
 
         public RenameOverlay(object instance) : base(instance, typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.RenameOverlay")) { }
 

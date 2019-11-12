@@ -20,7 +20,7 @@ internal static class PackageExport
                               .Select(w => "Assets" + w.Replace(Application.dataPath, "").Replace("\\", "/"))
                               .ToArray();
 
-        Debug.Log(string.Format("Export: {0}", string.Join(", ", assets)));
+        Debug.Log($"Export: {string.Join(", ", assets)}");
 
         AssetDatabase.ExportPackage(assets, "./Packages/MUE2.unitypackage", ExportPackageOptions.Default);
     }

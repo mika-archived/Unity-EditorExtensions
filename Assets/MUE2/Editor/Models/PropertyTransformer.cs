@@ -34,14 +34,14 @@ namespace MUE2.Editor.Models
 
         public static string TransformToStringPath(object @object)
         {
-            if (@object is Transform)
-                return TransformToStringPathByTransform((Transform) @object);
-            if (@object is Component)
-                return TransformToStringPathByComponent((Component) @object);
-            if (@object is GameObject)
-                return TransformToStringPathByGameObject((GameObject) @object);
-            if (@object is Object)
-                return ((Object) @object).name;
+            if (@object is Transform transform)
+                return TransformToStringPathByTransform(transform);
+            if (@object is Component component)
+                return TransformToStringPathByComponent(component);
+            if (@object is GameObject gameObject)
+                return TransformToStringPathByGameObject(gameObject);
+            if (@object is Object obj)
+                return obj.name;
             return @object == null ? "(null)" : "(unknown)";
         }
 

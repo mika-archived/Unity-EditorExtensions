@@ -14,17 +14,17 @@ namespace MUE2.Editor.Models
         {
             switch (Component.GetType().FullName)
             {
-                case "DynamicBone":
+                case Constants.DynamicBoneFullName:
                     DynamicBoneProperties = DynamicBoneProperties.CreateObject(Component);
-                    EffectiveAs = "DynamicBone";
+                    EffectiveAs = Constants.DynamicBoneFullName;
                     break;
 
-                case "DynamicBoneCollider":
+                case Constants.DynamicBoneColliderFullName:
                     DynamicBoneColliderProperties = DynamicBoneColliderProperties.CreateObject(Component);
-                    EffectiveAs = "DynamicBoneCollider";
+                    EffectiveAs = Constants.DynamicBoneColliderFullName;
                     break;
 
-                case "DynamicBonePlaneCollider":
+                case Constants.DynamicBonePlaneColliderFullName:
                     Debug.Log("Not Supported Yet");
                     break;
 
@@ -97,8 +97,8 @@ namespace MUE2.Editor.Models
 
         public string NamingConvention
         {
-            get { return m_NamingConvention; }
-            set { m_NamingConvention = value; }
+            get => m_NamingConvention;
+            set => m_NamingConvention = value;
         }
 
         #endregion

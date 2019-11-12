@@ -18,9 +18,6 @@ namespace MUE2.Editor
     /// </summary>
     internal class DynamicBonePresetManager : EditorWindow
     {
-        private const string DynamicBoneFullName = "DynamicBone";
-        private const string DynamicBoneColliderFullName = "DynamicBoneCollider";
-        private const string DynamicBonePlaneColliderFullName = "DynamicBonePlaneCollider";
         private readonly List<DynamicBoneConfiguration> _configurations;
         private readonly Dictionary<int, bool> _enabledComponents;
         private GameObject _gameObject;
@@ -83,9 +80,9 @@ namespace MUE2.Editor
                 return;
 
             var components = new List<Component>();
-            components.AddRange(_gameObject.GetComponentsInChildren(TypeFinder.GetType(DynamicBoneFullName)));
-            components.AddRange(_gameObject.GetComponentsInChildren(TypeFinder.GetType(DynamicBoneColliderFullName)));
-            components.AddRange(_gameObject.GetComponentsInChildren(TypeFinder.GetType(DynamicBonePlaneColliderFullName)));
+            components.AddRange(_gameObject.GetComponentsInChildren(TypeFinder.GetType(Constants.DynamicBoneFullName)));
+            components.AddRange(_gameObject.GetComponentsInChildren(TypeFinder.GetType(Constants.DynamicBoneColliderFullName)));
+            components.AddRange(_gameObject.GetComponentsInChildren(TypeFinder.GetType(Constants.DynamicBonePlaneColliderFullName)));
 
             if (components.Count == 0)
                 return;
@@ -168,37 +165,45 @@ namespace MUE2.Editor
 
             if (!Directory.Exists("Assets/DynamicBonePresets"))
                 AssetDatabase.CreateFolder("Assets", "DynamicBonePresets");
-            AssetDatabase.CreateAsset(preset, string.Format("Assets/DynamicBonePresets/{0}.asset", _name));
+            AssetDatabase.CreateAsset(preset, $"Assets/DynamicBonePresets/{_name}.asset");
         }
 
         private void ApplyPreset()
         {
             // 1st, apply DynamicBoneCollider
-            foreach (var collider in _preset.Configs.Where(w => w.EffectiveAs == "DynamicBoneCollider"))
+            foreach (var collider in _preset.Configs.Where(w => w.EffectiveAs == Constants.DynamicBoneColliderFullName))
                 foreach (var gameObject in FindGameObjectByPath(collider.NamingConvention))
                 {
-                    if (gameObject.GetComponent(TypeFinder.GetType(DynamicBoneColliderFullName)) != null)
+                    if (gameObject.GetComponent(TypeFinder.GetType(Constants.DynamicBoneColliderFullName)) != null)
+                    {
+                        Debug.Log($"[MUE2] DynamicBoneCollider is already attached to ${PropertyTransformer.TransformToStringPath(gameObject)}");
                         continue; // already attached
+                    }
 
-                    var component = gameObject.AddComponent(TypeFinder.GetType(DynamicBoneColliderFullName));
+                    var component = gameObject.AddComponent(TypeFinder.GetType(Constants.DynamicBoneColliderFullName));
                     collider.DynamicBoneColliderProperties.ApplyProperties(component);
+                    Debug.Log($"[MUE2] Applied DynamicBoneCollider to ${PropertyTransformer.TransformToStringPath(gameObject)}");
                 }
 
             // 2nd, apply DynamicBone
-            foreach (var bone in _preset.Configs.Where(w => w.EffectiveAs == "DynamicBone"))
+            foreach (var bone in _preset.Configs.Where(w => w.EffectiveAs == Constants.DynamicBoneFullName))
                 foreach (var gameObject in FindGameObjectByPath(bone.NamingConvention))
                 {
-                    if (gameObject.GetComponent(TypeFinder.GetType(DynamicBoneFullName)) != null)
+                    if (gameObject.GetComponent(TypeFinder.GetType(Constants.DynamicBoneFullName)) != null)
+                    {
+                        Debug.Log($"[MUE2] DynamicBone is already attached to ${PropertyTransformer.TransformToStringPath(gameObject)}");
                         continue; // already attached
+                    }
 
-                    var component = gameObject.AddComponent(TypeFinder.GetType(DynamicBoneFullName));
+                    var component = gameObject.AddComponent(TypeFinder.GetType(Constants.DynamicBoneFullName));
                     bone.DynamicBoneProperties.ApplyProperties(component, _gameObject);
+                    Debug.Log($"[MUE2] Applied DynamicBone to ${PropertyTransformer.TransformToStringPath(gameObject)}");
                 }
         }
 
         private List<GameObject> FindGameObjectByPath(string path)
         {
-            var compiled = new Regex(string.Format("^{0}$", path));
+            var compiled = new Regex($"^{path}$");
             var objects = _gameObject.GetComponentsInChildren<Transform>();
             return objects.Select(w => w.gameObject).Where(w => compiled.IsMatch(PropertyTransformer.TransformToStringPath(w))).ToList();
         }

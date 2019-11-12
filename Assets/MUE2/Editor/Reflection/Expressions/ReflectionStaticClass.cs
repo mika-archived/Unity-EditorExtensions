@@ -19,7 +19,7 @@ namespace MUE2.Editor.Reflection.Expressions
 
             var mi = @class.GetMethod(name, bindingFlags | BindingFlags.Static);
             if (mi == null)
-                throw new InvalidOperationException(string.Format("Method '{0}' is not found in this class", name));
+                throw new InvalidOperationException($"Method '{name}' is not found in this class");
 
             ((Cache) Caches[@class]).Methods.Add(name, CreateMethodAccessor(mi));
             return (TResult) ((Cache) Caches[@class]).Methods[name].Invoke(parameters);
@@ -52,27 +52,25 @@ namespace MUE2.Editor.Reflection.Expressions
 
         private static Func<object[], object> SafeCacheMethodAccess(Type type, string name)
         {
-            Func<object[], object> cache;
             if (Caches[type] == null)
             {
                 Caches[type] = new Cache();
                 return null;
             }
 
-            ((Cache) Caches[type]).Methods.TryGetValue(name, out cache);
+            ((Cache) Caches[type]).Methods.TryGetValue(name, out var cache);
             return cache;
         }
 
         private static Func<object> SafeCacheMemberAccess(Type type, string name)
         {
-            Func<object> cache;
             if (Caches[type] == null)
             {
                 Caches[type] = new Cache();
                 return null;
             }
 
-            ((Cache) Caches[type]).Members.TryGetValue(name, out cache);
+            ((Cache) Caches[type]).Members.TryGetValue(name, out var cache);
             return cache;
         }
 
