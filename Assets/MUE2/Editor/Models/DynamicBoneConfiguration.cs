@@ -41,8 +41,8 @@ namespace MUE2.Editor.Models
 
         public DynamicBoneProperties DynamicBoneProperties
         {
-            get { return m_DynamicBoneProperties; }
-            set { m_DynamicBoneProperties = value; }
+            get => m_DynamicBoneProperties;
+            set => m_DynamicBoneProperties = value;
         }
 
         #endregion
@@ -55,8 +55,8 @@ namespace MUE2.Editor.Models
 
         public DynamicBoneColliderProperties DynamicBoneColliderProperties
         {
-            get { return m_DynamicBoneColliderProperties; }
-            set { m_DynamicBoneColliderProperties = value; }
+            get => m_DynamicBoneColliderProperties;
+            set => m_DynamicBoneColliderProperties = value;
         }
 
         #endregion
@@ -69,8 +69,8 @@ namespace MUE2.Editor.Models
 
         public string EffectiveAs
         {
-            get { return m_EffectiveAs; }
-            set { m_EffectiveAs = value; }
+            get => m_EffectiveAs;
+            set => m_EffectiveAs = value;
         }
 
         #endregion
@@ -83,8 +83,8 @@ namespace MUE2.Editor.Models
 
         public string Name
         {
-            get { return m_Name; }
-            set { m_Name = value; }
+            get => m_Name;
+            set => m_Name = value;
         }
 
         #endregion

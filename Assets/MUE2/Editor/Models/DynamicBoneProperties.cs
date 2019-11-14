@@ -56,7 +56,7 @@ namespace MUE2.Editor.Models
             if (from == to)
                 return "(self)";
 
-            var fromUri = new Uri($"file:///{@from}");
+            var fromUri = new Uri($"file:///{from}");
             var toUri = new Uri($"file:///{to}");
             return $"../{fromUri.MakeRelativeUri(toUri)}";
         }
@@ -133,8 +133,8 @@ namespace MUE2.Editor.Models
 
         public List<string> Colliders
         {
-            get { return m_Colliders; }
-            set { m_Colliders = value; }
+            get => m_Colliders;
+            set => m_Colliders = value;
         }
 
         #endregion
@@ -147,8 +147,8 @@ namespace MUE2.Editor.Models
 
         public float Damping
         {
-            get { return m_Damping; }
-            set { m_Damping = value; }
+            get => m_Damping;
+            set => m_Damping = value;
         }
 
         #endregion
@@ -161,8 +161,8 @@ namespace MUE2.Editor.Models
 
         public AnimationCurve DampingDistrib
         {
-            get { return m_DampingDistrib; }
-            set { m_DampingDistrib = value; }
+            get => m_DampingDistrib;
+            set => m_DampingDistrib = value;
         }
 
         #endregion
@@ -175,8 +175,8 @@ namespace MUE2.Editor.Models
 
         public float DistanceToObject
         {
-            get { return m_DistanceToObject; }
-            set { m_DistanceToObject = value; }
+            get => m_DistanceToObject;
+            set => m_DistanceToObject = value;
         }
 
         #endregion
@@ -189,8 +189,8 @@ namespace MUE2.Editor.Models
 
         public bool DistantDisable
         {
-            get { return m_DistantDisable; }
-            set { m_DistantDisable = value; }
+            get => m_DistantDisable;
+            set => m_DistantDisable = value;
         }
 
         #endregion
@@ -203,8 +203,8 @@ namespace MUE2.Editor.Models
 
         public float Elasticity
         {
-            get { return m_Elasticity; }
-            set { m_Elasticity = value; }
+            get => m_Elasticity;
+            set => m_Elasticity = value;
         }
 
         #endregion
@@ -217,8 +217,8 @@ namespace MUE2.Editor.Models
 
         public AnimationCurve ElasticityDistrib
         {
-            get { return m_ElasticityDistrib; }
-            set { m_ElasticityDistrib = value; }
+            get => m_ElasticityDistrib;
+            set => m_ElasticityDistrib = value;
         }
 
         #endregion
@@ -231,8 +231,8 @@ namespace MUE2.Editor.Models
 
         public float EndLength
         {
-            get { return m_EndLength; }
-            set { m_EndLength = value; }
+            get => m_EndLength;
+            set => m_EndLength = value;
         }
 
         #endregion
@@ -245,8 +245,8 @@ namespace MUE2.Editor.Models
 
         public Vector3 EndOffset
         {
-            get { return m_EndOffset; }
-            set { m_EndOffset = value; }
+            get => m_EndOffset;
+            set => m_EndOffset = value;
         }
 
         #endregion
@@ -259,8 +259,8 @@ namespace MUE2.Editor.Models
 
         public List<string> Exclusion
         {
-            get { return m_Exclusion; }
-            set { m_Exclusion = value; }
+            get => m_Exclusion;
+            set => m_Exclusion = value;
         }
 
         #endregion
@@ -273,8 +273,8 @@ namespace MUE2.Editor.Models
 
         public Vector3 Force
         {
-            get { return m_Force; }
-            set { m_Force = value; }
+            get => m_Force;
+            set => m_Force = value;
         }
 
         #endregion
@@ -287,8 +287,8 @@ namespace MUE2.Editor.Models
 
         public int FreezeAxis
         {
-            get { return m_FreezeAxis; }
-            set { m_FreezeAxis = value; }
+            get => m_FreezeAxis;
+            set => m_FreezeAxis = value;
         }
 
         #endregion
@@ -301,8 +301,8 @@ namespace MUE2.Editor.Models
 
         public Vector3 Gravity
         {
-            get { return m_Gravity; }
-            set { m_Gravity = value; }
+            get => m_Gravity;
+            set => m_Gravity = value;
         }
 
         #endregion
@@ -315,8 +315,8 @@ namespace MUE2.Editor.Models
 
         public float Inert
         {
-            get { return m_Inert; }
-            set { m_Inert = value; }
+            get => m_Inert;
+            set => m_Inert = value;
         }
 
         #endregion
@@ -329,8 +329,8 @@ namespace MUE2.Editor.Models
 
         public AnimationCurve InertDistrib
         {
-            get { return m_InertDistrib; }
-            set { m_InertDistrib = value; }
+            get => m_InertDistrib;
+            set => m_InertDistrib = value;
         }
 
         #endregion
@@ -343,8 +343,8 @@ namespace MUE2.Editor.Models
 
         public float Radius
         {
-            get { return m_Radius; }
-            set { m_Radius = value; }
+            get => m_Radius;
+            set => m_Radius = value;
         }
 
         #endregion
@@ -357,8 +357,8 @@ namespace MUE2.Editor.Models
 
         public AnimationCurve RadiusDistrib
         {
-            get { return m_RadiusDistrib; }
-            set { m_RadiusDistrib = value; }
+            get => m_RadiusDistrib;
+            set => m_RadiusDistrib = value;
         }
 
         #endregion
@@ -371,8 +371,8 @@ namespace MUE2.Editor.Models
 
         public string ReferenceObject
         {
-            get { return m_ReferenceObject; }
-            set { m_ReferenceObject = value; }
+            get => m_ReferenceObject;
+            set => m_ReferenceObject = value;
         }
 
         #endregion
@@ -385,8 +385,8 @@ namespace MUE2.Editor.Models
 
         public string RootReference
         {
-            get { return m_RootReference; }
-            set { m_RootReference = value; }
+            get => m_RootReference;
+            set => m_RootReference = value;
         }
 
         #endregion
@@ -399,8 +399,8 @@ namespace MUE2.Editor.Models
 
         public float Stiffness
         {
-            get { return m_Stiffness; }
-            set { m_Stiffness = value; }
+            get => m_Stiffness;
+            set => m_Stiffness = value;
         }
 
         #endregion
@@ -413,8 +413,8 @@ namespace MUE2.Editor.Models
 
         public AnimationCurve StiffnessDistrib
         {
-            get { return m_StiffnessDistrib; }
-            set { m_StiffnessDistrib = value; }
+            get => m_StiffnessDistrib;
+            set => m_StiffnessDistrib = value;
         }
 
         #endregion
@@ -427,8 +427,8 @@ namespace MUE2.Editor.Models
 
         public int UpdateMode
         {
-            get { return m_UpdateMode; }
-            set { m_UpdateMode = value; }
+            get => m_UpdateMode;
+            set => m_UpdateMode = value;
         }
 
         #endregion
@@ -441,8 +441,8 @@ namespace MUE2.Editor.Models
 
         public float UpdateRate
         {
-            get { return m_UpdateRate; }
-            set { m_UpdateRate = value; }
+            get => m_UpdateRate;
+            set => m_UpdateRate = value;
         }
 
         #endregion

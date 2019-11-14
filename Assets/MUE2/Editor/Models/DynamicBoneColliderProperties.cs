@@ -48,8 +48,8 @@ namespace MUE2.Editor.Models
 
         public int Bound
         {
-            get { return m_Bound; }
-            set { m_Bound = value; }
+            get => m_Bound;
+            set => m_Bound = value;
         }
 
         #endregion
@@ -62,8 +62,8 @@ namespace MUE2.Editor.Models
 
         public Vector3 Center
         {
-            get { return m_Center; }
-            set { m_Center = value; }
+            get => m_Center;
+            set => m_Center = value;
         }
 
         #endregion
@@ -76,8 +76,8 @@ namespace MUE2.Editor.Models
 
         public int Direction
         {
-            get { return m_Direction; }
-            set { m_Direction = value; }
+            get => m_Direction;
+            set => m_Direction = value;
         }
 
         #endregion
@@ -90,8 +90,8 @@ namespace MUE2.Editor.Models
 
         public float Height
         {
-            get { return m_Height; }
-            set { m_Height = value; }
+            get => m_Height;
+            set => m_Height = value;
         }
 
         #endregion
@@ -104,8 +104,8 @@ namespace MUE2.Editor.Models
 
         public float Radius
         {
-            get { return m_Radius; }
-            set { m_Radius = value; }
+            get => m_Radius;
+            set => m_Radius = value;
         }
 
         #endregion
