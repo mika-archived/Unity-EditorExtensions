@@ -9,7 +9,7 @@ docker run --rm -it \
   -e "UNITY_PASSWORD=$UNITY_PASSWORD" \
   -e "TEST_PLATFORM=linux" \
   -e "WORKDIR=/root/project" \
-  -v "$(pwd):/root/project" \
+  -v "/$(pwd):/root/project" \
   -w '//root/project/docker' \
   gableroux/unity3d:$UNITY_VERSION \
   bash ./create-license-file.sh
