@@ -7,7 +7,7 @@ This editor extension uses reflection for internal API access and may not work o
 
 | MUE2 Version | Unity Version | C# Version |
 | :----------: | :-----------: | :--------: |
-|  `develop`   | `2018.4.12f1` |  .NET 4.x  |
+|  `develop`   | `2018.4.14f1` |  .NET 4.x  |
 |   `0.1.0`    | `2017.4.28f1` |  .NET 3.x  |
 
 ## Features
