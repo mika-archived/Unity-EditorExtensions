@@ -3,7 +3,7 @@ version: 2.1
 executors:
   unity:
     docker:
-      - image: gableroux/unity3d:2018.4.12f1
+      - image: gableroux/unity3d:2018.4.14f1
 
 jobs:
   create-package:

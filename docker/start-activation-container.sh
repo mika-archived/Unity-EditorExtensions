@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
-UNITY_VERSION=2018.4.12f1
+UNITY_VERSION=2018.4.14f1
 
 docker run --rm -it \
   -e "UNITY_VERSION=$UNITY_VERSION" \
